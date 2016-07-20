@@ -1,0 +1,34 @@
+1.建立linux用户
+    useradd
+        选项：
+          -b, --base-dir BASE_DIR   新账户的主目录的基目录
+          -c, --comment COMMENT         新账户的 GECOS 字段
+          -d, --home-dir HOME_DIR       新账户的主目录
+          -D, --defaults        显示或更改默认的 useradd 配置
+          -e, --expiredate EXPIRE_DATE  新账户的过期日期
+          -f, --inactive INACTIVE       新账户的密码不活动期
+          -g, --gid GROUP       新账户主组的名称或 ID
+          -G, --groups GROUPS   新账户的附加组列表
+          -h, --help                    显示此帮助信息并推出
+          -k, --skel SKEL_DIR   使用此目录作为骨架目录
+          -K, --key KEY=VALUE           不使用 /etc/login.defs 中的默认值
+          -l, --no-log-init 不要将此用户添加到最近登录和登录失败数据库
+          -m, --create-home 创建用户的主目录
+          -M, --no-create-home      不创建用户的主目录
+          -N, --no-user-group   不创建同名的组
+          -o, --non-unique      允许使用重复的 UID 创建用户
+          -p, --password PASSWORD       加密后的新账户密码
+          -r, --system                  创建一个系统账户
+          -s, --shell SHELL     新账户的登录 shell
+          -u, --uid UID         新账户的用户 ID
+          -U, --user-group      创建与用户同名的组
+          -Z, --selinux-user SEUSER     为 SELinux 用户映射使用指定 SEUSER
+    useradd lin -m -s /bin/bash
+    passwd linc
+
+
+2.新建的用户加入sudoers文件中
+        进入超级用户模式。也就是输入"su -",系统会让你输入超级用户密码，输入密码后就进入了超级用户模式。
+        添加文件的写权限。也就是输入命令"chmod u+w /etc/sudoers"。
+        编辑/etc/sudoers文件。也就是输入命令"vim /etc/sudoers",输入"i"进入编辑模式，找到这一行："root ALL=(ALL) ALL"在起下面添加"xxx ALL=(ALL) ALL"(这里的xxx是你的用户名)，然后保存（就是先摁一下Esc键，然后输入":wq"）退出。
+        撤销文件的写权限。也就是输入命令"chmod u-w /etc/sudoers"。
